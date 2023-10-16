@@ -1,0 +1,50 @@
+﻿@model AppWeb24CV.Models.InformacionViewModel
+
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-center">Contacto</h2>
+        <p class="text-center">Completa el formulario para ponerte en contacto</p>
+    </div>
+    <div class="col-8">
+        <form asp-action="EnviarContacto" asp-controller="Formularios" method="post">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Nombre" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Apellido</label>
+                <input asp-for="Apellido" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fecha de Nacimiento</label>
+                <input asp-for="FechaNacimiento" class="form-control" type="date" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Turno</label>
+                <select asp-for="Turno" class="form-control">
+                    <option value="Matutino">Matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Correo Electrónico</label>
+                <input  type="email" asp-for="Email" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Comentarios</label>
+                <textarea class="form-control" asp-for="Comentarios" rows="4"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+        @if (!string.IsNullOrEmpty(TempData["Mensaje"] as string))
+        {
+            <div class="alert alert-success mt-3">
+                @TempData["Mensaje"]
+            </div>
+        }
+    </div>
+    <div class="col-4">
+        <h3 class="text-center">Enviar información al correo capturado</h3>
+        <p>Se enviará un correo con la información capturada</p>
+    </div>
+</div>
